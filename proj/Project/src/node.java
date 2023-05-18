@@ -12,43 +12,37 @@ public class node {
         this.row = i;
     }
 
-    public void setH1(node finalNode) { //曼哈顿
-        this.h = Math.abs(finalNode.getRow() - getRow()) + Math.abs(finalNode.getCol() - getCol());
+    public void setH(int type, node finalNode){
+        double h =0;
+        if(type == 0)
+            h =  Math.abs(finalNode.getRow() - getRow()) + Math.abs(finalNode.getCol() - getCol());
+        else if(type == 1)
+            h = Math.abs(finalNode.getRow() - getRow()) + Math.abs(finalNode.getCol() - getCol());
+        else if(type == 2){
+            double dx = Math.abs(finalNode.getRow() - getRow());
+            double dy = Math.abs(finalNode.getCol() - getCol());
+            double min = Math.min(dx,dy);
+            h = (dx+dy+ (Math.sqrt(2)-2) * min);
+        }
+        this.h = h;
     }
 
-    public void setH2(node finalNode) { //欧几里得
-        this.h = Math.sqrt((finalNode.getRow()- getRow())^2+(finalNode.getCol() - getCol())^2);
-    }
-
-    public void setH3(node finalNode) { //对角线
-        double dx = Math.abs(finalNode.getRow() - getRow());
-        double dy = Math.abs(finalNode.getCol() - getCol());
-        double min = Math.min(dx,dy);
-        this.h = 2.5*(dx+dy+ (Math.sqrt(2)-2) * min);
-    }
-
-    public void setF(double f){
-        this.f = f;
-    }
-    public void setG(double g) {
-        this.g = g;
-    }
-
-    public void setData(node formerNode, double gCost){
+    public void setData(node formerNode, double gCost, double epsi){
         double g = formerNode.getG() + gCost;
         setParent(formerNode);
-        setG(g);
-        calculateFinalCost();
+        this.g = g;
+        calculateFinalCost(epsi);
     }
 
-    private void calculateFinalCost() {
-        double finalCost = getG() + getH();
-        setF(finalCost);
+    private void calculateFinalCost(double epsi) {
+        double finalCost = getG() + epsi * getH();
+        this.f = finalCost;
     }
-    public boolean refreshG(node currentNode, double cost){
+
+    public boolean refreshG(node currentNode, double cost, double epsi){
         double gCost = currentNode.getG() + cost;
         if (gCost < getG()) {
-            setData(currentNode, cost);
+            setData(currentNode, cost, epsi);
             return true;
         }
         return false;
@@ -90,11 +84,7 @@ public class node {
 
     @Override
     public String toString() {
-        String str ="";
-        if(this.getIsBlock())
-            str += "1 ";
-        else str += "0 ";
-        return str;
+        return getRow() + " " + getCol()+" ";
     }
 
     public boolean compareTo(node node) {
