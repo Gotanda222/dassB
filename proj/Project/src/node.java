@@ -12,6 +12,10 @@ public class node {
         this.row = i;
     }
 
+    public node(){
+        
+    }
+
     public void setH(int type, node finalNode){
         double h =0;
         if(type == 0)
@@ -39,10 +43,10 @@ public class node {
         this.f = finalCost;
     }
 
-    public boolean refreshG(node currentNode, double cost, double epsi){
-        double gCost = currentNode.getG() + cost;
+    public boolean refreshG(node childNode, double cost, double epsi){
+        double gCost = childNode.getG() + cost;
         if (gCost < getG()) {
-            setData(currentNode, cost, epsi);
+            setData(childNode, cost, epsi);
             return true;
         }
         return false;
