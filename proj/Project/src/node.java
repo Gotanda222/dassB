@@ -21,7 +21,7 @@ public class node {
         if(type == 0)
             h =  Math.abs(finalNode.getRow() - getRow()) + Math.abs(finalNode.getCol() - getCol());
         else if(type == 1)
-            h = Math.abs(finalNode.getRow() - getRow()) + Math.abs(finalNode.getCol() - getCol());
+            h = Math.sqrt((Math.abs(finalNode.getRow() - getRow()))^2 + (Math.abs(finalNode.getCol() - getCol()))*2);
         else if(type == 2){
             double dx = Math.abs(finalNode.getRow() - getRow());
             double dy = Math.abs(finalNode.getCol() - getCol());

@@ -5,7 +5,7 @@ public class game {
     public static void main(String[] args) {
         // In newIn = new In(); //从terminal读取输入
         RandamInputGenerator.generateRandamInput(50,50);
-        In newIn = new In("testData2.txt");//从testData2.txt读取输入（随机生成的输入）
+        In newIn = new In("testData2.txt");//从testData2.txt读取输入(随机生成的输入)
         int n = newIn.readInt();
         int m = newIn.readInt();
         double e = newIn.readDouble();
@@ -33,7 +33,7 @@ public class game {
         }
 
         ARAStar ss = new ARAStar(n, m, currentMaze, e);
-        if(args[0].equals("") ){
+        if(args[0].equals("terminal") ){
             int setBlockTime = 0;
             int inquiryTime = 0;
             while(e>=1){
@@ -44,6 +44,7 @@ public class game {
                 }
                 if(inquiry.length>0 && e == inquiry[inquiryTime]){
                     List<node> currentPath = ss.getCurrentPath();
+                    StdOut.println(currentPath.size());
                     for(node node : currentPath){
                         StdOut.print(node);
                     }
@@ -55,12 +56,9 @@ public class game {
                 e--;
                 ss.move();
                 if(ss.getCurrentPosition().compareTo(ss.getEndNode())){
-                    StdOut.println(ss.getEpsi());
                     return;
                 }
-                // StdOut.println("\n"+ss);
-                // StdOut.println(e);
-                // StdOut.println(ss.findPath().size());
+                
             }
             
         }   
