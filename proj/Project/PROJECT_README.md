@@ -340,3 +340,31 @@ private void generatePath(int row, int col) {
 **生成询问时间：**
 
 ​	与生成攻击时间相同，生成指定长度，指定范围，不重复且降序排序的数据。
+
+### 3. 运行结果
+
+##### 3.1 在样例数据上测试
+
+##### 3.1.1 task1
+
+**在终端中显示路径**
+
+ 
+
+![image-20230530193436013](C:\Users\ZRH\AppData\Roaming\Typora\typora-user-images\image-20230530193436013.png)
+
+​	在终端中输出的结果与给出的结果相同。
+
+**在GUI界面中显示结果**
+
+​	![image-20230530193818678](C:\Users\ZRH\AppData\Roaming\Typora\typora-user-images\image-20230530193818678.png)
+
+​	在e=14时，在(2,3)位置放置了障碍（深蓝色表示障碍），并且路径得到了更新，此时妮可的位置在(2,2)(浅蓝色表示)，剩余路径在右图中以红色表示。
+
+​	![image-20230530193954810](C:\Users\ZRH\AppData\Roaming\Typora\typora-user-images\image-20230530193954810.png)
+
+​	在e=12时，在(6,0)位置放置了障碍，对路径没有影响。
+
+![image-20230530194300452](C:\Users\ZRH\AppData\Roaming\Typora\typora-user-images\image-20230530194300452.png)
+
+​	在e=2时，走到了终点。
